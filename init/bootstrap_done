@@ -1,0 +1,13 @@
+base_packages false
+docker false
+hexchat false
+wechat false
+oss_restore false
+dotfiles false
+trojan false
+github_cli false
+firefox false
+chrome false
+claude_code false
+cursor false
+signal false

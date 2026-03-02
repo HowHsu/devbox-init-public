@@ -1,0 +1,33 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: zh_CN.UTF-8
+  keyboard:
+    layout: us
+    variant: ''
+
+  # __SOURCE_ID__ is replaced by make_usb.sh from ISO's install-sources.yaml
+  # Common values: ubuntu-desktop-minimal / ubuntu-desktop
+  source:
+    id: __SOURCE_ID__
+    search_drivers: false
+
+  storage:
+    layout:
+      name: direct   # Whole-disk partition, no encryption
+
+  identity:
+    hostname: devbox
+    username: hao
+    password: "__HASHED_PASSWORD__"    # Replaced by make_usb.sh
+    realname: Hao
+
+  ssh:
+    install-server: true
+    allow-pw: true
+
+  packages: []
+
+  # After install: connect to WiFi, then run:
+  #   git clone https://github.com/HowHsu/devbox_init ~/devbox_init
+  #   cd ~/devbox_init && bash init/bootstrap.sh

@@ -1,0 +1,3 @@
+[submodule "qemu_test_box"]
+	path = qemu_test_box
+	url = git@github.com:HowHsu/qemu_test_box.git
