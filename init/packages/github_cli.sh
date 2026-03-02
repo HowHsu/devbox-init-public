@@ -10,5 +10,5 @@ proxychains4 wget -qO- https://cli.github.com/packages/githubcli-archive-keyring
     | sudo tee /usr/share/keyrings/githubcli-archive-keyring.gpg > /dev/null
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
     | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-sudo proxychains4 apt-get update -qq
-sudo proxychains4 apt-get install -y -qq gh
+sudo apt-get update -qq -o Acquire::https::Proxy=socks5h://127.0.0.1:1081
+sudo apt-get install -y -qq gh -o Acquire::https::Proxy=socks5h://127.0.0.1:1081

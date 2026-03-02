@@ -15,5 +15,5 @@ Package: *
 Pin: origin packages.mozilla.org
 Pin-Priority: 1000
 PINEOF
-sudo proxychains4 apt-get update -qq
-sudo proxychains4 apt-get install -y firefox
+sudo apt-get update -qq -o Acquire::https::Proxy=socks5h://127.0.0.1:1081
+sudo apt-get install -y firefox -o Acquire::https::Proxy=socks5h://127.0.0.1:1081
