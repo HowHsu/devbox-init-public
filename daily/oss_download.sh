@@ -64,8 +64,15 @@ download_item() {
     local remote="$REMOTE_ROOT/$rel_path"
     local local_path="$OSS_LOCAL_DIR/$rel_path"
 
-    # Determine directory or file
-    if rclone lsf "$remote" 2>/dev/null | head -1 | grep -q .; then
+    # Determine directory or file:
+    # List parent and check if entry has trailing / (rclone marks directories with /)
+    local parent_dir
+    parent_dir=$(dirname "$rel_path")
+    local parent_remote="$REMOTE_ROOT"
+    [[ "$parent_dir" != "." ]] && parent_remote="$parent_remote/$parent_dir"
+    local base_name
+    base_name=$(basename "$rel_path")
+    if rclone lsf "$parent_remote" 2>/dev/null | grep -qxF "${base_name}/"; then
         mkdir -p "$local_path"
         echo "==== Downloading directory $rel_path -> $local_path ===="
         rclone copy "$remote" "$local_path" \
