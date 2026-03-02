@@ -5,4 +5,5 @@ if command -v claude &>/dev/null; then
     echo "    claude already installed, skipping"
     exit 0
 fi
-proxychains4 curl -fsSL https://cli.claude.ai/install.sh | proxychains4 bash
+curl -fsSL --proxy socks5h://127.0.0.1:1081 https://cli.claude.ai/install.sh \
+    | ALL_PROXY=socks5h://127.0.0.1:1081 bash
