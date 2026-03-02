@@ -67,7 +67,7 @@ restore_one() {
     local local_path="$OSS_LOCAL_DIR/$rel_path"
 
     # Determine if remote path is a directory or file: try lsd, output means directory
-    if rclone lsd "$remote" 2>/dev/null | grep -q .; then
+    if rclone lsf "$remote" 2>/dev/null | head -1 | grep -q .; then
         # Directory: use copy
         mkdir -p "$local_path"
         echo "==== Restoring directory $rel_path -> $local_path ===="

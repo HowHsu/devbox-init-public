@@ -65,7 +65,7 @@ download_item() {
     local local_path="$OSS_LOCAL_DIR/$rel_path"
 
     # Determine directory or file
-    if rclone lsd "$remote" 2>/dev/null | grep -q .; then
+    if rclone lsf "$remote" 2>/dev/null | head -1 | grep -q .; then
         mkdir -p "$local_path"
         echo "==== Downloading directory $rel_path -> $local_path ===="
         rclone copy "$remote" "$local_path" \
