@@ -6,9 +6,12 @@ if command -v cursor &>/dev/null; then
     exit 0
 fi
 sudo mkdir -p /etc/apt/keyrings
-proxychains4 curl -fsSL https://downloads.cursor.com/aptrepo/cursor-signing-key.asc \
-    | gpg --dearmor | sudo tee /etc/apt/keyrings/cursor.gpg > /dev/null
-echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main" \
-    | sudo tee /etc/apt/sources.list.d/cursor.list > /dev/null
+
+# Add Cursor's GPG key
+proxychains4 curl -fsSL https://downloads.cursor.com/keys/anysphere.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/cursor.gpg > /dev/null
+
+# Add the Cursor repository
+echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main" | sudo tee /etc/apt/sources.list.d/cursor.list > /dev/null
+
 sudo apt-get update -qq -o Acquire::https::Proxy=socks5h://127.0.0.1:1081
 sudo apt-get install -y cursor -o Acquire::https::Proxy=socks5h://127.0.0.1:1081
