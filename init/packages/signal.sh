@@ -6,7 +6,7 @@ if command -v signal-desktop &>/dev/null; then
     exit 0
 fi
 sudo mkdir -p /etc/apt/keyrings
-proxychains4 curl -fsSL https://updates.signal.org/desktop/apt/keys.asc \
+proxychains curl -fsSL https://updates.signal.org/desktop/apt/keys.asc \
     | gpg --dearmor | sudo tee /etc/apt/keyrings/signal-desktop.gpg > /dev/null
 echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/signal-desktop.gpg] https://updates.signal.org/desktop/apt xenial main" \
     | sudo tee /etc/apt/sources.list.d/signal-desktop.list > /dev/null

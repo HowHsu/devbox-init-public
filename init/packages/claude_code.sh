@@ -7,5 +7,5 @@ if command -v claude &>/dev/null; then
 fi
 if ! curl -fsSL --connect-timeout 10 https://claude.ai/install.sh | bash; then
     echo "    Direct download failed, retrying with proxy..."
-    proxychains4 bash -c "curl -fsSL https://claude.ai/install.sh | bash"
+    proxychains bash -c "curl -fsSL https://claude.ai/install.sh | bash"
 fi

@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 #
 # Bootstrap script for Ubuntu 24.04 dev environment setup.
-# Two phases: Phase 1 (no proxy), Phase 2 (proxy via proxychains4).
+# Two phases: Phase 1 (no proxy), Phase 2 (proxy via proxychains).
 #
 # Software installed (see packages/ for individual install scripts):
 #
 # Phase 1 — No proxy needed:
 #   base_packages:  rclone, git, curl, wget, build-essential, git-lfs,
 #                   xz-utils, ca-certificates, gnupg, software-properties-common,
-#                   apt-transport-https, tmux, vim, proxychains4, netcat-openbsd,
+#                   apt-transport-https, tmux, vim, proxychains, netcat-openbsd,
 #                   docker.io
 #   docker:         enable docker service, add user to docker group
 #   hexchat:        apt-get install (Ubuntu source) (GUI)
@@ -103,7 +103,7 @@ run_step dotfiles
 run_step trojan
 
 # ============================================================
-# Phase 2 — Proxy available via proxychains4
+# Phase 2 — Proxy available via proxychains
 # ============================================================
 
 # Verify proxy is reachable before proceeding

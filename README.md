@@ -40,7 +40,7 @@ bash make_usb.sh
 
 The script will:
 1. Query the latest Ubuntu LTS/stable versions
-2. Download the Desktop ISO (tries Chinese mirrors first, falls back to official + proxychains4)
+2. Download the Desktop ISO (tries Chinese mirrors first, falls back to official + proxychains)
 3. Verify SHA256 checksum (always fetched from `releases.ubuntu.com`)
 4. Inject autoinstall config and repack the ISO
 5. Optionally write to USB
@@ -94,7 +94,7 @@ bash daily/oss_download.sh
 ## Requirements
 
 - Ubuntu 24.04+ (Desktop or Server)
-- Internet access (Chinese mirrors supported; proxychains4 for GFW bypass)
+- Internet access (Chinese mirrors supported; proxychains for GFW bypass)
 
 ## License
 

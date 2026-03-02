@@ -40,7 +40,7 @@ bash make_usb.sh
 
 脚本会依次：
 1. 查询最新 Ubuntu LTS / stable 版本
-2. 下载 Desktop ISO（优先国内镜像，失败后 proxychains4 走官方源）
+2. 下载 Desktop ISO（优先国内镜像，失败后 proxychains 走官方源）
 3. 校验 SHA256（校验值始终从 `releases.ubuntu.com` 获取，不信任镜像站）
 4. 注入 autoinstall 配置，重新打包 ISO
 5. 可选写入 USB
@@ -94,7 +94,7 @@ bash daily/oss_download.sh
 ## 系统要求
 
 - Ubuntu 24.04+（桌面版或服务器版）
-- 可联网（支持国内镜像；proxychains4 翻墙）
+- 可联网（支持国内镜像；proxychains 翻墙）
 
 ## License
 

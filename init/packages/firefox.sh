@@ -6,7 +6,7 @@ if command -v firefox &>/dev/null; then
     exit 0
 fi
 sudo mkdir -p /etc/apt/keyrings
-proxychains4 wget -qO- https://packages.mozilla.org/apt/repo-signing-key.gpg \
+proxychains wget -qO- https://packages.mozilla.org/apt/repo-signing-key.gpg \
     | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
 echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" \
     | sudo tee /etc/apt/sources.list.d/mozilla.list > /dev/null

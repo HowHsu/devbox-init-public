@@ -73,7 +73,7 @@ get_iso_info() {
     local sha_url="https://releases.ubuntu.com/${base_ver}/SHA256SUMS"
 
     sha_content=$(curl -sf --max-time 15 "$sha_url" 2>/dev/null) \
-        || sha_content=$(proxychains4 curl -sf --max-time 15 "$sha_url" 2>/dev/null) \
+        || sha_content=$(proxychains curl -sf --max-time 15 "$sha_url" 2>/dev/null) \
         || return 1
     filename=$(echo "$sha_content" \
         | grep -oP "ubuntu-${escaped_ver}[\d.]*-desktop-amd64\.iso" \
@@ -159,8 +159,8 @@ if [[ ! -f "$ISO_FILE" ]]; then
         rm -f "$ISO_FILE"
     done
     if [[ "$downloaded" != "true" ]]; then
-        echo "    All mirrors failed, retrying official source via proxychains4..."
-        proxychains4 wget --progress=bar:force -O "$ISO_FILE" \
+        echo "    All mirrors failed, retrying official source via proxychains..."
+        proxychains wget --progress=bar:force -O "$ISO_FILE" \
             "https://releases.ubuntu.com/${BASE_VER}/${ISO_FILENAME}"
     fi
 else

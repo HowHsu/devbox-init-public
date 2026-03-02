@@ -16,6 +16,6 @@ sudo apt-get install -y -qq \
     apt-transport-https \
     tmux \
     vim \
-    proxychains4 \
+    proxychains \
     netcat-openbsd \
     docker.io
