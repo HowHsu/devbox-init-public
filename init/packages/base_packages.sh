@@ -18,4 +18,5 @@ sudo apt-get install -y -qq \
     vim \
     proxychains \
     netcat-openbsd \
-    docker.io
+    docker.io \
+    global universal-ctags
