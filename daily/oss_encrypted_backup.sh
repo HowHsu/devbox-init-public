@@ -2,7 +2,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/oss_common.sh"
+source "$SCRIPT_DIR/../init/oss_common.sh"
 
 LOG_FILE="$HOME/oss_backup.log"
 

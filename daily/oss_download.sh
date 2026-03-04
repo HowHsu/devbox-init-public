@@ -100,7 +100,11 @@ while true; do
             ;;
         ..)
             if [[ -n "$CUR_PATH" ]]; then
-                CUR_PATH="${CUR_PATH%/*}"
+                if [[ "$CUR_PATH" == */* ]]; then
+                    CUR_PATH="${CUR_PATH%/*}"
+                else
+                    CUR_PATH=""
+                fi
             fi
             ;;
         ''|*[!0-9]*)
@@ -114,12 +118,20 @@ while true; do
             fi
 
             if [[ "$choice" -le ${#DIRS[@]} ]]; then
-                # Enter subdirectory
                 dir_name="${DIRS[$((choice - 1))]}"
                 if [[ -z "$CUR_PATH" ]]; then
-                    CUR_PATH="$dir_name"
+                    dir_rel="$dir_name"
                 else
-                    CUR_PATH="$CUR_PATH/$dir_name"
+                    dir_rel="$CUR_PATH/$dir_name"
+                fi
+                read -rp "Directory $dir_rel — [E]nter or [D]ownload? [E/d] " dir_action
+                if [[ "$dir_action" == [dD] ]]; then
+                    read -rp "Download $dir_rel/ to $OSS_LOCAL_DIR/$dir_rel/? [Y/n] " confirm
+                    if [[ "$confirm" != [nN] ]]; then
+                        download_item "$dir_rel"
+                    fi
+                else
+                    CUR_PATH="$dir_rel"
                 fi
             else
                 # Selected a file, confirm download
